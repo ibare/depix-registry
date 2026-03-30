@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Depix Registry — Shape Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; padding: 32px; }
+  h1 { font-size: 24px; color: #111; margin-bottom: 8px; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 32px; }
+  .pack { margin-bottom: 48px; }
+  .pack-title { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 16px; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+  .card { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.15s; }
+  .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  .card-svg { width: 120px; height: 96px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .card-svg svg { width: 100%; height: 100%; }
+  .card-key { font-size: 13px; font-weight: 600; color: #111; font-family: 'SF Mono', Menlo, monospace; }
+  .bg-toggle { margin-bottom: 24px; display: flex; gap: 8px; align-items: center; }
+  .bg-toggle label { font-size: 13px; color: #555; cursor: pointer; }
+  .bg-toggle input { cursor: pointer; }
+  .error { color: #c00; font-size: 14px; padding: 16px; background: #fff0f0; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Depix Registry — Shape Preview</h1>
+<p class="subtitle">Renders all shapes from <code>packs/*.json</code> locally.</p>
+
+<div class="bg-toggle">
+  <input type="checkbox" id="darkBg">
+  <label for="darkBg">Dark background</label>
+</div>
+
+<div id="root"></div>
+
+<script>
+async function loadRegistry() {
+  const res = await fetch('./registry.json');
+  if (!res.ok) throw new Error('Cannot load registry.json — open this file via a local server (e.g. npx serve .)');
+  return res.json();
+}
+
+async function loadPack(url) {
+  // Convert CDN URL to local path
+  const localPath = url.includes('/packs/') ? './packs/' + url.split('/packs/').pop() : url;
+  const res = await fetch(localPath);
+  if (!res.ok) throw new Error(`Cannot load ${localPath}`);
+  return res.json();
+}
+
+function renderShape(container, key, svgString) {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const svgBox = document.createElement('div');
+  svgBox.className = 'card-svg';
+  svgBox.innerHTML = svgString;
+
+  const label = document.createElement('div');
+  label.className = 'card-key';
+  label.textContent = key;
+
+  card.appendChild(svgBox);
+  card.appendChild(label);
+  container.appendChild(card);
+}
+
+async function main() {
+  const root = document.getElementById('root');
+  try {
+    const registry = await loadRegistry();
+
+    for (const pack of registry.packs) {
+      const section = document.createElement('div');
+      section.className = 'pack';
+
+      const title = document.createElement('div');
+      title.className = 'pack-title';
+      title.textContent = `${pack.id} (${pack.keys.length} shapes)`;
+      section.appendChild(title);
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      const data = await loadPack(pack.url);
+      for (const [key, value] of Object.entries(data)) {
+        const svg = typeof value === 'string' ? value : value.svg;
+        renderShape(grid, key, svg);
+      }
+
+      section.appendChild(grid);
+      root.appendChild(section);
+    }
+  } catch (e) {
+    root.innerHTML = `<div class="error">${e.message}<br><br>Tip: Run <code>npx serve .</code> in the depix-registry directory, then open the URL.</div>`;
+  }
+}
+
+document.getElementById('darkBg').addEventListener('change', (e) => {
+  document.body.style.background = e.target.checked ? '#1a1a1a' : '#f5f5f5';
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.background = e.target.checked ? '#2a2a2a' : 'white';
+    c.style.borderColor = e.target.checked ? '#444' : '#e0e0e0';
+  });
+  document.querySelectorAll('.card-key').forEach(l => {
+    l.style.color = e.target.checked ? '#eee' : '#111';
+  });
+});
+
+main();
+</script>
+</body>
+</html>

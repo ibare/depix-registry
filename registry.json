@@ -3,19 +3,28 @@
   "packs": [
     {
       "id": "tech",
-      "keys": [
-        "server",
-        "database",
-        "cloud",
-        "api",
-        "cache",
-        "queue",
-        "browser",
-        "mobile",
-        "cpu",
-        "network"
-      ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.0/packs/tech.json"
+      "keys": ["server", "database", "cloud", "api", "cache", "queue", "browser", "mobile", "cpu", "network"],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.3.0/packs/tech.json"
+    },
+    {
+      "id": "infra",
+      "keys": ["firewall", "load-balancer", "dns", "gateway", "proxy", "vpc", "subnet", "container", "pod", "cluster", "vm", "volume", "bucket", "registry", "secret", "certificate", "log", "monitor", "alert", "backup"],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.3.0/packs/infra.json"
+    },
+    {
+      "id": "business",
+      "keys": ["user", "team", "organization", "document", "folder", "email", "calendar", "task", "milestone", "decision", "process", "payment", "invoice", "contract", "meeting", "presentation", "report", "approval", "notification", "workflow"],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.3.0/packs/business.json"
+    },
+    {
+      "id": "data",
+      "keys": ["data-lake", "data-warehouse", "etl", "pipeline", "stream", "batch", "schema", "table", "index", "model", "training", "inference", "feature-store", "dataset", "notebook", "dashboard", "metric", "embedding", "vector-db", "data-source"],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.3.0/packs/data.json"
+    },
+    {
+      "id": "network",
+      "keys": ["router", "switch", "hub", "modem", "access-point", "cdn", "endpoint", "socket", "webhook", "rest-api", "graphql", "grpc", "mqtt", "websocket", "vpn", "ssl", "cors", "rate-limiter", "circuit-breaker", "service-mesh"],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.3.0/packs/network.json"
     }
   ]
 }
