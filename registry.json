@@ -15,7 +15,7 @@
         "cpu",
         "network"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@main/packs/tech.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.0/packs/tech.json"
     }
   ]
 }
