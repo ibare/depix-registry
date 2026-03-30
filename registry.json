@@ -1,0 +1,21 @@
+{
+  "version": "1",
+  "packs": [
+    {
+      "id": "tech",
+      "keys": [
+        "server",
+        "database",
+        "cloud",
+        "api",
+        "cache",
+        "queue",
+        "browser",
+        "mobile",
+        "cpu",
+        "network"
+      ],
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@main/packs/tech.json"
+    }
+  ]
+}
