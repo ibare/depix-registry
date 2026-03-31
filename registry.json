@@ -15,7 +15,7 @@
         "cpu",
         "network"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.1/packs/tech.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.2/packs/tech.json"
     },
     {
       "id": "infra",
@@ -41,7 +41,7 @@
         "alert",
         "backup"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.1/packs/infra.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.2/packs/infra.json"
     },
     {
       "id": "business",
@@ -67,7 +67,7 @@
         "notification",
         "workflow"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.1/packs/business.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.2/packs/business.json"
     },
     {
       "id": "data",
@@ -93,7 +93,7 @@
         "vector-db",
         "data-source"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.1/packs/data.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.2/packs/data.json"
     },
     {
       "id": "network",
@@ -119,7 +119,7 @@
         "circuit-breaker",
         "service-mesh"
       ],
-      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.1/packs/network.json"
+      "url": "https://cdn.jsdelivr.net/gh/ibare/depix-registry@v0.2.2/packs/network.json"
     }
   ]
 }
